@@ -4,7 +4,6 @@ import Card from "../Card/Card.jsx";
 import styles from "./Flashcard.module.css";
 
 function Flashcard({ data, isQuestionShowing }) {
-  console.log(data)
   return (
     <div className={styles.flashcard}>
       <p className={styles.tag}>{data.category}</p>
