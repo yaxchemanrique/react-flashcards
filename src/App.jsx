@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "react-feather";
 import { randomizeArray } from "../src/utils/sampleQuestion.js";
 import Header from "./components/Header/Header.jsx";
 import Flashcard from "./components/Flashcard/Flashcard.jsx";
+import Lottie from "./components/Lottie/Lottie.jsx";
 import CardNumber from "./components/CardNumber/CardNumber.jsx";
 import ButtonContainer from "./components/ButtonContainer/ButtonContainer.jsx";
 import Button from "./components/Button/Button.jsx";
@@ -13,6 +14,7 @@ const flashcards = randomizeArray(FLASHCARD_DATA);
 function App() {
   const [isQuestionShowing, setIsQuestionShowing] = useState(true);
   const [questionNumber, setQuestionNumber] = useState(0);
+  const [isLottieShowing, setIsLottieShowing] = useState(false)
 
   function toggleQuestion() {
     setIsQuestionShowing((current) => !current);
@@ -24,7 +26,9 @@ function App() {
       return;
     }
     if(questionNumber + x >= flashcards.length) {
+      setIsLottieShowing(true)
       setQuestionNumber(0);
+      return;
     }
     setQuestionNumber(questionNumber + x);
   }
@@ -34,7 +38,7 @@ function App() {
       <Header>
         <CardNumber num={questionNumber + 1} total={flashcards.length}/>
       </Header>
-      <main>
+      <main style={{position: 'relative'}}>
         <Flashcard
           data={flashcards[questionNumber]}
           isQuestionShowing={isQuestionShowing}
@@ -50,6 +54,7 @@ function App() {
             <ChevronRight color="var(--clr-accent-400)" />
           </Button>
         </ButtonContainer>
+        {isLottieShowing && <Lottie setIsLottieShowing={setIsLottieShowing}/>}
       </main>
     </>
   );
