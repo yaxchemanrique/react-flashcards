@@ -1,4 +1,5 @@
 import React from "react";
+import formatTextWithCode from "../../utils/formatTextWithCode.jsx";
 import Card from "../Card/Card.jsx";
 import styles from "./Flashcard.module.css";
 
@@ -8,9 +9,9 @@ function Flashcard({ data, isQuestionShowing }) {
     <div className={styles.flashcard}>
       <p className={styles.tag}>{data.category}</p>
       {isQuestionShowing ? (
-        <Card type="question">{data.question}</Card>
+        <Card type="question">{formatTextWithCode(data.question, styles)}</Card>
       ) : (
-        <Card type="answer">{data.answer}</Card>
+        <Card type="answer">{formatTextWithCode(data.answer, styles)}</Card>
       )}
     </div>
   );
