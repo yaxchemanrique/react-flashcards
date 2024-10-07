@@ -1,0 +1,33 @@
+.card {
+  aspect-ratio: 16 / 9;
+  border: solid 1px  var(--clr-accent-400);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: calc(0.25rem + 1rem);
+}
+
+.answer {
+  background-color: var(--clr-accent-100);
+  animation:  rotateCard 300ms;
+  backface-visibility: hidden;
+}
+
+/* .animate {
+  animation:  rotateCard 2000ms;
+              /* rotateIn 2000ms; 
+  backface-visibility: hidden;
+} */
+
+@keyframes rotateCard {
+  from {
+    transform: rotateY(180deg) 
+  }
+}
+
+@keyframes rotateIn {
+  to {
+    transform: rotateY(-180deg) 
+  }
+}
