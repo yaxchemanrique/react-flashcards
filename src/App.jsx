@@ -20,6 +20,12 @@ function App() {
 
   function moveQuestionByX(x) {
     setIsQuestionShowing(true);
+    if(x < 0 && questionNumber + x < 0) {
+      return;
+    }
+    if(questionNumber + x >= flashcards.length) {
+      setQuestionNumber(0);
+    }
     setQuestionNumber(questionNumber + x);
   }
 
