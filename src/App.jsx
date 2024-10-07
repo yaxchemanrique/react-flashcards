@@ -2,7 +2,9 @@ import { useState } from "react";
 import FLASHCARD_DATA from "../src/flashcards-data.js";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import { randomizeArray } from "../src/utils/sampleQuestion.js";
+import Header from "./components/Header/Header.jsx";
 import Flashcard from "./components/Flashcard/Flashcard.jsx";
+import CardNumber from "./components/CardNumber/CardNumber.jsx";
 import ButtonContainer from "./components/ButtonContainer/ButtonContainer.jsx";
 import Button from "./components/Button/Button.jsx";
 
@@ -22,23 +24,28 @@ function App() {
   }
 
   return (
-    <main>
-      <Flashcard
-        data={flashcards[questionNumber]}
-        isQuestionShowing={isQuestionShowing}
-      />
-      <ButtonContainer>
-        <Button clickHandle={() => moveQuestionByX(-1)}>
-          <ChevronLeft color="var(--clr-accent-400)" />
-        </Button>
-        <Button clickHandle={toggleQuestion}>
-          {isQuestionShowing ? "Show Answer" : "Show Question"}
-        </Button>
-        <Button clickHandle={() => moveQuestionByX(1)}>
-          <ChevronRight color="var(--clr-accent-400)" />
-        </Button>
-      </ButtonContainer>
-    </main>
+    <>
+      <Header>
+        <CardNumber num={questionNumber + 1} total={flashcards.length}/>
+      </Header>
+      <main>
+        <Flashcard
+          data={flashcards[questionNumber]}
+          isQuestionShowing={isQuestionShowing}
+        />
+        <ButtonContainer>
+          <Button clickHandle={() => moveQuestionByX(-1)}>
+            <ChevronLeft color="var(--clr-accent-400)" />
+          </Button>
+          <Button clickHandle={toggleQuestion}>
+            {isQuestionShowing ? "Show Answer" : "Show Question"}
+          </Button>
+          <Button clickHandle={() => moveQuestionByX(1)}>
+            <ChevronRight color="var(--clr-accent-400)" />
+          </Button>
+        </ButtonContainer>
+      </main>
+    </>
   );
 }
 
