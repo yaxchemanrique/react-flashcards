@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import FLASHCARDS_DATA from "../flashcards-data";
 import { randomizeArray } from "../utils/sampleQuestion.js";
-import { createTopicsArr, createTopicsObj } from "../utils/createTopics.js";
+import { createTopicsObj } from "../utils/createTopics.js";
+import { QuestionNumberContext } from "./QuestionNumberProvider.jsx";
 
 export const TopicContext = createContext();
 
@@ -15,6 +16,7 @@ function TopicProvider({ children }) {
   const [flashcardsByTopic, setFlashcardsByTopic] = useState(() =>
     filterByCurrentTopic(currentTopic)
   );
+  const { resetNumberToX } = useContext(QuestionNumberContext)
 
   function filterByCurrentTopic(selectedTopic) {
     const flashcardsByTopic = allFlashcards.filter(
@@ -26,6 +28,7 @@ function TopicProvider({ children }) {
   function changeTopic(value) {
     setCurrentTopic(value);
     setFlashcardsByTopic(filterByCurrentTopic(value));
+    resetNumberToX(0);
   }
 
   const value = {
@@ -38,7 +41,9 @@ function TopicProvider({ children }) {
   };
 
   return (
-    <TopicContext.Provider value={value}>{children}</TopicContext.Provider>
+    <TopicContext.Provider value={value}>
+      {children}
+    </TopicContext.Provider>
   );
 }
 

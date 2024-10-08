@@ -1,4 +1,4 @@
 .header {
-  display: flex;
-  justify-content: end;
+  padding: 0;
+  padding-block-start: 1rem;
 }

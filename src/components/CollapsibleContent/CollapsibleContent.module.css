@@ -1,0 +1,36 @@
+.titleContainer {
+  background-color: var(--clr-accent-100);
+  padding: 1.5rem;
+  margin-block-end: 1rem;
+  border-radius: 0.8rem;
+}
+
+.titleTextContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title {
+  opacity: 0.6;
+}
+
+.tag {
+  border: 1px solid var(--clr-accent-400);
+  padding: 0.5rem 1rem;
+  border-radius: 100vh;
+  font-weight: 500;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+}
+
+.collapsedContent {
+  overflow: hidden;
+  transition: all 600ms ease-in-out;
+}
