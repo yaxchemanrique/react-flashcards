@@ -16,6 +16,7 @@ function App() {
   const [isQuestionShowing, setIsQuestionShowing] = useState(true);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [isLottieShowing, setIsLottieShowing] = useState(false);
+  const [areButtonsDisabled, setAreButtonDisabled] = useState(false)
   const { flashcardsByTopic } = useContext(TopicContext);
 
   function toggleQuestion() {
@@ -47,17 +48,17 @@ function App() {
           isQuestionShowing={isQuestionShowing}
         />
         <ButtonContainer>
-          <Button clickHandle={() => moveQuestionByX(-1)}>
+          <Button isDisabled={areButtonsDisabled} clickHandle={() => moveQuestionByX(-1)}>
             <ChevronLeft color="var(--clr-accent-400)" />
           </Button>
-          <Button clickHandle={toggleQuestion}>
+          <Button isDisabled={areButtonsDisabled} clickHandle={toggleQuestion}>
             {isQuestionShowing ? "Show Answer" : "Show Question"}
           </Button>
-          <Button clickHandle={() => moveQuestionByX(1)}>
+          <Button isDisabled={areButtonsDisabled} clickHandle={() => moveQuestionByX(1)}>
             <ChevronRight color="var(--clr-accent-400)" />
           </Button>
         </ButtonContainer>
-        {isLottieShowing && <Lottie setIsLottieShowing={setIsLottieShowing} />}
+        {isLottieShowing && <Lottie setAreButtonDisabled={setAreButtonDisabled} setIsLottieShowing={setIsLottieShowing} />}
       </main>
     </>
   );

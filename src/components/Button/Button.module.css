@@ -10,3 +10,7 @@
 .button:hover {
   background-color: var(--clr-accent-100);
 }
+
+.button:disabled {
+  opacity: 0.1;
+}

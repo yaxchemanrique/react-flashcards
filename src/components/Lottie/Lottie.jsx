@@ -1,19 +1,26 @@
 import { useState, useEffect } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-function Lottie({ setIsLottieShowing }) {
+function Lottie({ setIsLottieShowing, setAreButtonDisabled }) {
   const [dotLottie, setDotLottie] = useState(null);
 
   useEffect(() => {
+    function onPlay() {
+      setAreButtonDisabled(true);
+    }
+
     function onComplete() {
       setIsLottieShowing(false);
+      setAreButtonDisabled(false);
     }
     if (dotLottie) {
+      dotLottie.addEventListener("play", onPlay);
       dotLottie.addEventListener("complete", onComplete);
     }
 
     return () => {
       if (dotLottie) {
+        dotLottie.removeEventListener("play", onPlay);
         dotLottie.removeEventListener("complete", onComplete);
       }
     };
