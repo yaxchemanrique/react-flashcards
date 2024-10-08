@@ -1,0 +1,32 @@
+.fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  column-gap: 0.25rem;
+  justify-content: center;
+  border: none;
+}
+
+.radioGroup {
+  position: relative;
+}
+
+.radioGroup input {
+  scale: 0;
+  position: absolute;
+}
+
+.fieldset label {
+  padding: 0.25rem 0.7rem;
+  border-radius: 100vw;
+  outline: 1px solid var(--clr-accent-400);
+}
+
+.fieldset label:hover {
+  background-color: var(--clr-accent-100);
+}
+
+.fieldset input:checked+label {
+  background-color: var(--clr-accent-400);
+  color: white;
+}

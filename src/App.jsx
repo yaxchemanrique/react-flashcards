@@ -1,20 +1,22 @@
-import { useState } from "react";
-import FLASHCARD_DATA from "../src/flashcards-data.js";
+import { useState, useContext } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
-import { randomizeArray } from "../src/utils/sampleQuestion.js";
+
+import { TopicContext } from "./contexts/TopicProvider.jsx";
+
 import Header from "./components/Header/Header.jsx";
+import OptionsGroup from "./components/OptionsGroup/OptionsGroup.jsx";
 import Flashcard from "./components/Flashcard/Flashcard.jsx";
 import Lottie from "./components/Lottie/Lottie.jsx";
 import CardNumber from "./components/CardNumber/CardNumber.jsx";
 import ButtonContainer from "./components/ButtonContainer/ButtonContainer.jsx";
 import Button from "./components/Button/Button.jsx";
 
-const flashcards = randomizeArray(FLASHCARD_DATA);
 
 function App() {
   const [isQuestionShowing, setIsQuestionShowing] = useState(true);
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [isLottieShowing, setIsLottieShowing] = useState(false)
+  const [isLottieShowing, setIsLottieShowing] = useState(false);
+  const { flashcardsByTopic } = useContext(TopicContext);
 
   function toggleQuestion() {
     setIsQuestionShowing((current) => !current);
@@ -22,11 +24,11 @@ function App() {
 
   function moveQuestionByX(x) {
     setIsQuestionShowing(true);
-    if(x < 0 && questionNumber + x < 0) {
+    if (x < 0 && questionNumber + x < 0) {
       return;
     }
-    if(questionNumber + x >= flashcards.length) {
-      setIsLottieShowing(true)
+    if (questionNumber + x >= flashcardsByTopic.length) {
+      setIsLottieShowing(true);
       setQuestionNumber(0);
       return;
     }
@@ -36,13 +38,18 @@ function App() {
   return (
     <>
       <Header>
-        <CardNumber num={questionNumber + 1} total={flashcards.length}/>
+        <CardNumber num={questionNumber + 1} total={flashcardsByTopic.length} />
       </Header>
-      <main style={{position: 'relative'}}>
+      <OptionsGroup />
+      <main style={{ position: "relative" }}>
         <Flashcard
-          data={flashcards[questionNumber]}
+          data={flashcardsByTopic[questionNumber]}
           isQuestionShowing={isQuestionShowing}
         />
+        <input type="radio" id="some-radio" name="some" />
+        <label htmlFor="some-radio">this is a label</label>
+        <input type="radio" id="other-radio" name="some" />
+        <label htmlFor="other-radio">other label</label>
         <ButtonContainer>
           <Button clickHandle={() => moveQuestionByX(-1)}>
             <ChevronLeft color="var(--clr-accent-400)" />
@@ -54,7 +61,7 @@ function App() {
             <ChevronRight color="var(--clr-accent-400)" />
           </Button>
         </ButtonContainer>
-        {isLottieShowing && <Lottie setIsLottieShowing={setIsLottieShowing}/>}
+        {isLottieShowing && <Lottie setIsLottieShowing={setIsLottieShowing} />}
       </main>
     </>
   );
