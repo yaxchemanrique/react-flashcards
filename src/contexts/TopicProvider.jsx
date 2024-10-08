@@ -26,7 +26,6 @@ function TopicProvider({ children }) {
   function changeTopic(value) {
     setCurrentTopic(value);
     setFlashcardsByTopic(filterByCurrentTopic(value));
-    setFlashcardsByTopicArray(createTopicsArr(flashcardsByTopic))
   }
 
   const value = {
