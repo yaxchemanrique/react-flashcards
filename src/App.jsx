@@ -46,10 +46,6 @@ function App() {
           data={flashcardsByTopic[questionNumber]}
           isQuestionShowing={isQuestionShowing}
         />
-        <input type="radio" id="some-radio" name="some" />
-        <label htmlFor="some-radio">this is a label</label>
-        <input type="radio" id="other-radio" name="some" />
-        <label htmlFor="other-radio">other label</label>
         <ButtonContainer>
           <Button clickHandle={() => moveQuestionByX(-1)}>
             <ChevronLeft color="var(--clr-accent-400)" />
