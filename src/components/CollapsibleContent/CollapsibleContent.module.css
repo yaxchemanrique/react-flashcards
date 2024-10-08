@@ -1,8 +1,13 @@
-.titleContainer {
+.collapseButton {
   background-color: var(--clr-accent-100);
+  width: 100%;
   padding: 1.5rem;
   margin-block-end: 1rem;
   border-radius: 0.8rem;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .titleTextContainer {
@@ -25,9 +30,10 @@
   font-size: 0.8rem;
 }
 
-.button {
-  background-color: transparent;
-  border: none;
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .collapsedContent {
