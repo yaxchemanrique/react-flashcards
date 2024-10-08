@@ -4,22 +4,35 @@ import { TopicContext } from "../../contexts/TopicProvider.jsx";
 import styles from "./OptionsGroup.module.css";
 
 function OptionsGroup() {
-  const { topics, topicsKeysArray, currentTopic, changeTopic } =
-    useContext(TopicContext);
+  const { topics, updateTopics, numberOfQuestionsByTopic } = useContext(TopicContext);
+
+  function handleChange(e) {
+    const topicToUpdateIndex = topics.findIndex(element => element.id === e.target.value)
+    const updatedTopic = {
+      ...topics[topicToUpdateIndex],
+      isChecked: e.target.checked,
+    }
+    let nextTopics = [...topics]
+    nextTopics.splice(topicToUpdateIndex, 1, updatedTopic);
+    const selectedTopics = nextTopics.filter(element => element.isChecked)
+    if(selectedTopics.length !== 0) {
+      updateTopics(nextTopics);
+    }
+  }
 
   return (
     <fieldset className={styles.fieldset}>
-      {topicsKeysArray.map((key) => (
-        <div className={styles.radioGroup} key={key}>
+      {topics.map(({id, label, isChecked}) => (
+        <div className={styles.radioGroup} key={id}>
           <input
-            type="radio"
+            type="checkbox"
             name='topics'
-            value={key}
-            id={key}
-            checked={key === currentTopic}
-            onChange={(e) => changeTopic(e.target.value)}
+            value={id}
+            id={id}
+            checked={isChecked}
+            onChange={(e) => handleChange(e)}
           />
-          <label htmlFor={key}>{topics[key]}</label>
+          <label htmlFor={id}>{label} ({numberOfQuestionsByTopic[id]})</label>
         </div>
       ))}
     </fieldset>

@@ -20,6 +20,7 @@
   padding: 0.25rem 0.7rem;
   border-radius: 100vw;
   outline: 1px solid var(--clr-accent-400);
+  font-size: 0.8rem;
 }
 
 .fieldset label:hover {

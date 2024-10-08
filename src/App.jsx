@@ -17,7 +17,7 @@ function App() {
   const [isQuestionShowing, setIsQuestionShowing] = useState(true);
   const [isLottieShowing, setIsLottieShowing] = useState(false);
   const [areButtonsDisabled, setAreButtonDisabled] = useState(false);
-  const { topics, currentTopic, flashcardsByTopic } = useContext(TopicContext);
+  const { flashcardsBySelectedTopics } = useContext(TopicContext);
   const { questionNumber, resetNumberToX } = useContext(QuestionNumberContext);
 
   function toggleQuestion() {
@@ -29,7 +29,7 @@ function App() {
     if (x < 0 && questionNumber + x < 0) {
       return;
     }
-    if (questionNumber + x >= flashcardsByTopic.length) {
+    if (questionNumber + x >= flashcardsBySelectedTopics.length) {
       setIsLottieShowing(true);
       resetNumberToX(0);
       return;
@@ -42,16 +42,14 @@ function App() {
       <Header>
         <CollapsibleContent
           title={`Select a topic:`}
-          tag={topics[currentTopic]}
-          // key={currentTopic}
         >
           <OptionsGroup />
         </CollapsibleContent>
       </Header>
       <main style={{ position: "relative" }}>
-        <CardNumber num={questionNumber + 1} total={flashcardsByTopic.length} />
+        <CardNumber num={questionNumber + 1} total={flashcardsBySelectedTopics.length} />
         <Flashcard
-          data={flashcardsByTopic[questionNumber]}
+          data={flashcardsBySelectedTopics[questionNumber]}
           isQuestionShowing={isQuestionShowing}
         />
         <ButtonContainer>
