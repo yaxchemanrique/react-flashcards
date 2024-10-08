@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import FLASHCARDS_DATA from "../flashcards-data";
+import flashcards from '../flashcards-two.js'
 import { randomizeArray } from "../utils/sampleQuestion.js";
 import { createTopicsObj } from "../utils/createTopics.js";
 import { QuestionNumberContext } from "./QuestionNumberProvider.jsx";
@@ -7,8 +8,10 @@ import { QuestionNumberContext } from "./QuestionNumberProvider.jsx";
 export const TopicContext = createContext();
 
 function TopicProvider({ children }) {
-  const allFlashcards = randomizeArray(FLASHCARDS_DATA);
-  const topics = createTopicsObj(FLASHCARDS_DATA);
+  const allFlashcards = randomizeArray(flashcards);
+  const topics = createTopicsObj(flashcards);
+  // const allFlashcards = randomizeArray(FLASHCARDS_DATA);
+  // const topics = createTopicsObj(FLASHCARDS_DATA);
   const topicsKeysArray = Object.keys(topics);
   const firstTopic = topicsKeysArray[0];
 
