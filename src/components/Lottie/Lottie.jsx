@@ -43,7 +43,7 @@ function Lottie({ setIsLottieShowing, setAreButtonDisabled }) {
     >
       <DotLottieReact
         dotLottieRefCallback={dotLottieRefCallback}
-        src="src/assets/confetti-toTop.json"
+        src="/confetti-toTop.json"
         loop={false}
         autoplay={true}
       />
