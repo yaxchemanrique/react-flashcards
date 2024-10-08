@@ -14,7 +14,6 @@ function TopicProvider({ children }) {
     () => filterBySelectedTopics(initialTopics)
   );
   const numberOfQuestionsByTopic = calculateNumberOfQuestionsByTopic()
-  console.log(numberOfQuestionsByTopic)
 
   function calculateNumberOfQuestionsByTopic() {
     let numberOfQuestionsByTopic = {};
