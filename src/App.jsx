@@ -43,7 +43,7 @@ function App() {
         <CollapsibleContent
           title={`Select a topic:`}
           tag={topics[currentTopic]}
-          key={currentTopic}
+          // key={currentTopic}
         >
           <OptionsGroup />
         </CollapsibleContent>

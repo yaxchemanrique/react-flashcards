@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "react-feather";
+import { ChevronDown } from "react-feather";
 import styles from "./CollapsibleContent.module.css";
 
 function CollapsibleContent({ title, tag, children }) {
@@ -14,8 +14,8 @@ function CollapsibleContent({ title, tag, children }) {
           <span className={styles.title}>{title}</span>
           <span className={styles.tag}>{tag}</span>
         </div>
-        <div className={styles.iconContainer}>
-          {isCollapsed ? <ChevronDown /> : <ChevronUp />}
+        <div className={`${styles.iconContainer} ${!isCollapsed ? styles.rotate : ''}`}>
+          <ChevronDown />
         </div>
       </button>
       <div

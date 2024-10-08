@@ -34,9 +34,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 300ms ease-in-out;
 }
 
 .collapsedContent {
   overflow: hidden;
   transition: all 600ms ease-in-out;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
