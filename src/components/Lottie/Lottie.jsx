@@ -34,8 +34,8 @@ function Lottie({ setIsLottieShowing, setAreButtonDisabled }) {
     <div
       style={{
         position: "absolute",
-        bottom: 0,
-        width: "150%",
+        top: 0,
+        width: "200%",
         height: "auto",
         left: "50%",
         transform: "translateX(-50%)",
