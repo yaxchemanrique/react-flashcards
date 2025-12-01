@@ -881,4 +881,6 @@ const flashcards = [
     },
     category: "benefits"
   }
-]
+];
+
+export default flashcards;
